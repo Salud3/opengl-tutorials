@@ -2,7 +2,7 @@
 #include<filesystem>
 namespace fs = std::filesystem;
 //------------------------------
-
+#include"Windows.h"
 #include<iostream>
 #include<glad/glad.h>
 #include<GLFW/glfw3.h>
@@ -20,18 +20,29 @@ namespace fs = std::filesystem;
 
 const unsigned int width = 800;
 const unsigned int height = 800;
-
+//Translate
+int Scale = 5;
+float x = 0;
+float y = 0.5f;
+float z = 0;
 
 // Vertices coordinates
 GLfloat vertices[] =
-{ //     COORDINATES     /        COLORS      /   TexCoord  //
-	-0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
-	-0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	5.0f, 0.0f,
-	 0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
-	 0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	5.0f, 0.0f,
-	 0.0f, 0.8f,  0.0f,     0.92f, 0.86f, 0.76f,	2.5f, 5.0f
+{ //     COORDINATES												/        COLORS      /   TexCoord  //
+0,      -(sqrt(6) / 3) / 2,       -.5773502691896f,					 0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
+0.5f,   -(sqrt(6) / 3) / 2,       sqrt(3) / 6),							0.83f, 0.70f, 0.44f,	5.0f, 0.0f,
+-0.5f,  -(sqrt(6) / 3) / 2,       sqrt(3) / 6),							0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
+0,        sqrt(6) / 3) / 2,          0),									0.92f, 0.86f, 0.76f,	2.5f, 5.0f
 };
+/*
+0,      -(Mathf.Sqrt(6)/3)/2,       -.5773502691896f),	//0
+0.5f,   -(Mathf.Sqrt(6)/3)/2,       Mathf.Sqrt(3)/6),	//1
+-0.5f,  -(Mathf.Sqrt(6)/3)/2,        Mathf.Sqrt(3)/6),	//2
+0,      Mathf.Sqrt(6)/3/2,          0),					//3
+0,      Mathf.Sqrt(6)/3/2,          0),					//4
+0,      Mathf.Sqrt(6)/3/2,          0),					//5
 
+*/
 // Indices for vertices order
 GLuint indices[] =
 {
