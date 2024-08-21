@@ -1,10 +1,18 @@
 #include"poligonClass.h"
 
+/*
 Poligon::Poligon(GLfloat v[], GLuint i[])
-{};
+{
+	vertices = v;
+	indices = i;
+};
+*/
+
+
 
 void Poligon::Init(Shader& shaderProgram) {
 	// Generates Vertex Array Object and binds it
+	VAO1 = VAO();
 	VAO1.Bind();
 
 	// Generates Vertex Buffer Object and links it to vertices
@@ -52,6 +60,12 @@ void Poligon::Init(Shader& shaderProgram) {
 
 
 
+
+Poligon::Poligon(const GLfloat v[], const GLuint i[], size_t vertexSize, size_t indexSize)
+{
+	std::copy(v, v + vertexSize, vertices);
+	std::copy(i, i + indexSize, indices);
+};
 
 void Poligon:: Render(Shader& shaderProgram, GLFWwindow* window) {
 

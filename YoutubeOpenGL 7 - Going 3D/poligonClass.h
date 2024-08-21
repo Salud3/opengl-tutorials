@@ -21,16 +21,15 @@ namespace fs = std::filesystem;
 
 class Poligon {
 public:
-	GLfloat vertices[1];
-	GLuint indices[1];
+	GLfloat vertices[100];
+	GLuint indices[100];
 
-	Poligon(int width, int length, int height)
-		: m_width(width), m_length(length), m_height(height)
-	{};
+	Poligon(const GLfloat v[], const GLuint i[], size_t vertexSize, size_t indexSize);
+	
 
-	void Render(Shader& shaderProgram, GLFWwindow* window) {};
-	void Clear() {};
-	void Init(Shader& shaderProgram) {};
+	void Render(Shader& shaderProgram, GLFWwindow* window);
+	void Clear();
+	void Init(Shader& shaderProgram);
 
 private: 
 	VAO VAO1;
@@ -49,7 +48,7 @@ private:
 	int m_width{ 0 };
 	int m_length{ 0 };
 	int m_height{ 0 };
-};				
+};
 
 
 #endif

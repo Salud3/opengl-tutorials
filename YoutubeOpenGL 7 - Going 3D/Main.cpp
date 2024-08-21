@@ -103,10 +103,11 @@ GLuint indicesC[] =
 
 };
 
-Poligon Piramid1;
 
 void Piramid1(Shader& shaderProgram, GLFWwindow* window)
 {
+
+
 	// Generates Vertex Array Object and binds it
 	VAO VAO2;
 	VAO2.Bind();
@@ -216,6 +217,7 @@ void Piramid1(Shader& shaderProgram, GLFWwindow* window)
 
 int main()
 {
+
 	// Initialize GLFW
 	glfwInit();
 
@@ -246,9 +248,19 @@ int main()
 	glViewport(0, 0, width, height);
 	Shader shaderProgram("default.vert", "default.frag");
 
-	//Piramid1(shaderProgram,window);
-	Center(shaderProgram,window);
+	Poligon piramid1 = Poligon(vertices, indices, 36,12);
 
+	piramid1.Init(shaderProgram);
+
+	//Piramid1(shaderProgram,window);
+	//Center(shaderProgram,window);
+	while (!glfwWindowShouldClose(window))
+	{
+		piramid1.Render(shaderProgram,window);
+	}
+
+	
+	piramid1.Clear();
 	shaderProgram.Delete();
 	// Delete window before ending the program
 	glfwDestroyWindow(window);
