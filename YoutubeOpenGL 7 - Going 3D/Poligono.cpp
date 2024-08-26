@@ -8,11 +8,6 @@ Poligon::Poligon(GLfloat v[], GLuint i[])
 };
 */
 
-Poligon::Poligon(const GLfloat v[], const GLuint i[], size_t vertexSize, size_t indexSize)
-{
-	std::copy(v, v + vertexSize, vertices);
-	std::copy(i, i + indexSize, indices);
-};
 
 
 void Poligon::Init(Shader& shaderProgram) {
@@ -64,6 +59,13 @@ void Poligon::Init(Shader& shaderProgram) {
 }
 
 
+
+
+Poligon::Poligon(const GLfloat v[], const GLuint i[], size_t vertexSize, size_t indexSize)
+{
+	std::copy(v, v + vertexSize, vertices);
+	std::copy(i, i + indexSize, indices);
+};
 
 void Poligon:: Render(Shader& shaderProgram, GLFWwindow* window) {
 
