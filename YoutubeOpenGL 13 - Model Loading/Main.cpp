@@ -6,8 +6,8 @@ namespace fs = std::filesystem;
 #include"Model.h"
 
 
-const unsigned int width = 800;
-const unsigned int height = 800;
+const unsigned int width = 1280;
+const unsigned int height = 720;
 
 
 int main()
