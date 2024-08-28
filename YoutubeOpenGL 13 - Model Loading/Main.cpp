@@ -59,9 +59,6 @@ int main()
 	glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 
 
-
-	
-
 	// Enables the Depth Buffer
 	glEnable(GL_DEPTH_TEST);
 
@@ -76,10 +73,16 @@ int main()
 	* Also note that this requires C++17, so go to Project Properties, C/C++, Language, and select C++17
 	*/
 	std::string parentDir = (fs::current_path().fs::path::parent_path()).string();
-	std::string modelPath = "/Resources/YoutubeOpenGL 13 - Model Loading/models/bunny/scene.gltf";
+	std::string modelPath = "/Resources/YoutubeOpenGL 13 - Model Loading/kunaiAc.gltf";
 	
 	// Load in a model
 	Model model((parentDir + modelPath).c_str());
+
+	std::string texPath = "/Resources/YoutubeOpenGL 13 - Model Loading/text2.png";
+
+	Texture brickTex((parentDir+texPath).c_str(),"",0);
+	brickTex.texUnit(shaderProgram, "tex0", 0);
+
 
 	// Original code from the tutorial
 	// Model model("models/bunny/scene.gltf");
@@ -99,6 +102,7 @@ int main()
 
 		// Draw a model
 		model.Draw(shaderProgram, camera);
+		brickTex.Bind();
 
 		// Swap the back buffer with the front buffer
 		glfwSwapBuffers(window);
