@@ -17,23 +17,24 @@ namespace fs = std::filesystem;
 #include"VBO.h"
 #include"EBO.h"
 #include "Main.h"
-#include"poligonClass.h"
+//#include"poligonClass.h"
 
 const unsigned int width = 1280;
 const unsigned int height = 720;
 //Translate
-int Scale = 5;
+int Scale = 3;
 float y = 0.9f;
+float z = 5.9f;
 
 // Vertices coordinates
 GLfloat vertices[] =
 { //     COORDINATES												/        COLORS      /   TexCoord  //
-0,      -(sqrt(6) / 3) / 2+y,		   -.5773502691896f,			0.83f, 0.70f, 0.44f,	0.294f, 0.668f, //0
-0.5f,   -(sqrt(6) / 3) / 2+y,				sqrt(3) / 6,			0.83f, 0.70f, 0.44f,	0.432f, 0.347f,//1
--0.5f,  -(sqrt(6) / 3) / 2+y,				sqrt(3) / 6,			0.83f, 0.70f, 0.44f,	0.159f, 0.347f,//2
-0,       (sqrt(6) / 3) / 2+y,						  0,			0.92f, 0.86f, 0.76f,	0.582f, 0.668f,//3
-0,       (sqrt(6) / 3) / 2+y,						  0,			0.92f, 0.86f, 0.76f,	0.0f, 0.668f,//4
-0,       (sqrt(6) / 3) / 2+y,						  0,			0.92f, 0.86f, 0.76f,	0.293f, 0.0f,//5
+Scale * 0,      Scale*-(sqrt(6) / 3) / 2	,		Scale*   -.5773502691896f,			0.83f, 0.70f, 0.44f,	0.294f, 0.668f, //0
+Scale * 0.5f,   Scale*-(sqrt(6) / 3) / 2	,		Scale*		sqrt(3) / 6  ,			0.83f, 0.70f, 0.44f,	0.432f, 0.347f,//1
+Scale * -0.5f,  Scale*-(sqrt(6) / 3) / 2	,		Scale*		sqrt(3) / 6  ,			0.83f, 0.70f, 0.44f,	0.159f, 0.347f,//2
+Scale * 0,      Scale* (sqrt(6) / 3) / 2	,		Scale*				  0  ,			0.92f, 0.86f, 0.76f,	0.582f, 0.668f,//3
+Scale * 0,      Scale* (sqrt(6) / 3) / 2	,		Scale*				  0  ,			0.92f, 0.86f, 0.76f,	0.0f, 0.668f,//4
+Scale * 0,      Scale* (sqrt(6) / 3) / 2	,		Scale*				  0  ,			0.92f, 0.86f, 0.76f,	0.293f, 0.0f,//5
 
 };
 
@@ -77,16 +78,16 @@ GLuint indices[] =
 // Vertices coordinates
 GLfloat verticesC[] =
 { //     COORDINATES															/        COLORS      /   TexCoord  //
-0,      -(sqrt(6)/3)/2 ,   0                          -0.5773507f,				0.83f, 0.70f, 0.44f,	0.489f,	0.333f,//0
-0.5f,   -(sqrt(6)/3)/2 ,   sqrt(3)/2            -0.5773507f,					0.83f, 0.70f, 0.44f,	0.611f,	0.056f,//1
--0.5f,  -(sqrt(6)/3)/2 ,   sqrt(3)/2            -0.5773507f,					0.83f, 0.70f, 0.44f,	0.731f,	0.333f,//2
-0,       (sqrt(6)/3)/2 ,   (sqrt(3)/2)+.2886756f -0.5773507f,					0.92f, 0.86f, 0.76f,	0.863f,	0.622f,//3
-0.5f,    (sqrt(6)/3)/2 ,   .2886756f                   -0.5773507f,				0.92f, 0.86f, 0.76f,	0.365f,	0.625f,//4
--0.5f,   (sqrt(6)/3)/2 ,   .2886756f                   -0.5773507f,				0.92f, 0.86f, 0.76f,	0.62f,	0.62f,//5
-0.5f,   -(sqrt(6) / 3) / 2 ,   sqrt(3) / 2 - 0.5773507f,						0.83f, 0.70f, 0.44f,	0.249f,	0.333f,//6
-- 0.5f, -(sqrt(6) / 3) / 2 ,   sqrt(3) / 2 - 0.5773507f,						0.83f, 0.70f, 0.44f,	0,		0.33f,//7
-0,       (sqrt(6) / 3) / 2 ,   (sqrt(3) / 2) + .2886756f - 0.5773507f,			0.83f, 0.70f, 0.44f,	0.122f,	0.627f,//8
-- 0.5f,  (sqrt(6) / 3) / 2 ,   .2886756f - 0.5773507f,							0.92f, 0.86f, 0.76f,	0.251f,	0.904f//9
+0,      -(sqrt(6)/3)/2 ,   0							-0.5773507f,				0.83f, 0.70f, 0.44f,	0.489f,	0.333f,//0
+0.5f,   -(sqrt(6)/3)/2 ,   sqrt(3)/2					-0.5773507f,					0.83f, 0.70f, 0.44f,	0.611f,	0.056f,//1
+-0.5f,  -(sqrt(6)/3)/2 ,   sqrt(3)/2					-0.5773507f,					0.83f, 0.70f, 0.44f,	0.731f,	0.333f,//2
+0,       (sqrt(6)/3)/2 ,   (sqrt(3)/2)+.2886756f		-0.5773507f,					0.92f, 0.86f, 0.76f,	0.863f,	0.622f,//3
+0.5f,    (sqrt(6)/3)/2 ,   .2886756f					-0.5773507f,				0.92f, 0.86f, 0.76f,	0.365f,	0.625f,//4
+-0.5f,   (sqrt(6)/3)/2 ,   .2886756f					-0.5773507f,				0.92f, 0.86f, 0.76f,	0.62f,	0.62f,//5
+0.5f,   -(sqrt(6) / 3) / 2 ,   sqrt(3) / 2				-0.5773507f,						0.83f, 0.70f, 0.44f,	0.249f,	0.333f,//6
+- 0.5f, -(sqrt(6) / 3) / 2 ,   sqrt(3) / 2				-0.5773507f,						0.83f, 0.70f, 0.44f,	0,		0.33f,//7
+0,       (sqrt(6) / 3) / 2 ,   (sqrt(3) / 2) +.2886756f	-0.5773507f,			0.83f, 0.70f, 0.44f,	0.122f,	0.627f,//8
+- 0.5f,  (sqrt(6) / 3) / 2 ,   .2886756f				-0.5773507f,							0.92f, 0.86f, 0.76f,	0.251f,	0.904f//9
 };																				
 
 // Indices for vertices order
@@ -139,7 +140,7 @@ void Piramid1(Shader& shaderProgram, GLFWwindow* window)
 	std::string texPath = "/Resources/YoutubeOpenGL 7 - Going 3D/";
 
 	// Texture
-	Texture brickTex((parentDir + texPath + "CD1.png").c_str(), GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+	Texture brickTex((parentDir + texPath + "FlaurosC.png").c_str(), GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	brickTex.texUnit(shaderProgram, "tex0", 0);
 
 	// Original code from the tutorial
@@ -212,61 +213,6 @@ void Piramid1(Shader& shaderProgram, GLFWwindow* window)
 	brickTex.Delete();
 
 
-}
-
-
-int main()
-{
-
-	// Initialize GLFW
-	glfwInit();
-
-	// Tell GLFW what version of OpenGL we are using 
-	// In this case we are using OpenGL 3.3
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	// Tell GLFW we are using the CORE profile
-	// So that means we only have the modern functions
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-	// Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
-	GLFWwindow* window = glfwCreateWindow(width, height, "YoutubeOpenGL", NULL, NULL);
-	// Error check if the window fails to create
-	if (window == NULL)
-	{
-		std::cout << "Failed to create GLFW window" << std::endl;
-		glfwTerminate();
-		return -1;
-	}
-	// Introduce the window into the current context
-	glfwMakeContextCurrent(window);
-
-	//Load GLAD so it configures OpenGL
-	gladLoadGL();
-	// Specify the viewport of OpenGL in the Window
-	// In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
-	glViewport(0, 0, width, height);
-	Shader shaderProgram("default.vert", "default.frag");
-
-	Poligon piramid1 = Poligon(vertices, indices, 36,12);
-
-	piramid1.Init(shaderProgram);
-
-	//Piramid1(shaderProgram,window);
-	//Center(shaderProgram,window);
-	while (!glfwWindowShouldClose(window))
-	{
-		piramid1.Render(shaderProgram,window);
-	}
-
-	
-	piramid1.Clear();
-	shaderProgram.Delete();
-	// Delete window before ending the program
-	glfwDestroyWindow(window);
-	// Terminate GLFW before ending the program
-	glfwTerminate();
-	return 0;
 }
 
 void Center(Shader& shaderProgram, GLFWwindow* window)
@@ -374,6 +320,69 @@ void Center(Shader& shaderProgram, GLFWwindow* window)
 	VBO1.Delete();
 	EBO1.Delete();
 	brickTex.Delete();
+}
+
+
+int main()
+{
+
+	// Initialize GLFW
+	glfwInit();
+
+	// Tell GLFW what version of OpenGL we are using 
+	// In this case we are using OpenGL 3.3
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	// Tell GLFW we are using the CORE profile
+	// So that means we only have the modern functions
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	// Create a GLFWwindow object of 800 by 800 pixels, naming it "YoutubeOpenGL"
+	GLFWwindow* window = glfwCreateWindow(width, height, "YoutubeOpenGL", NULL, NULL);
+	// Error check if the window fails to create
+	if (window == NULL)
+	{
+		std::cout << "Failed to create GLFW window" << std::endl;
+		glfwTerminate();
+		return -1;
+	}
+	// Introduce the window into the current context
+	glfwMakeContextCurrent(window);
+
+	//Load GLAD so it configures OpenGL
+	gladLoadGL();
+	// Specify the viewport of OpenGL in the Window
+	// In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
+	glViewport(0, 0, width, height);
+	Shader shaderProgram("default.vert", "default.frag");
+
+	Piramid1(shaderProgram,window);
+
+	/*
+	Poligon center = Poligon(verticesC, indicesC, 80, 20);
+	Poligon piramid1 = Poligon(vertices, indices, 36,12);
+
+	piramid1.Init(shaderProgram);
+	center.Init(shaderProgram);
+
+	//Piramid1(shaderProgram,window);
+	//Center(shaderProgram,window);
+	while (!glfwWindowShouldClose(window))
+	{
+		piramid1.Render(shaderProgram,window);
+		center.Render(shaderProgram, window);
+	}
+
+	piramid1.Clear();
+	*/
+
+
+	shaderProgram.Delete();
+	// Delete window before ending the program
+	glfwDestroyWindow(window);
+	// Terminate GLFW before ending the program
+	glfwTerminate();
+	return 0;
 }
 
 
